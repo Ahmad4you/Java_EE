@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Login</title>
+    
+    <h:outputStylesheet name="css/loginstyles.css" />
+</h:head>
+<h:body>
+     <h:form id="loginForm" styleClass="login-form" >
+        <h:panelGrid columns="2" styleClass="form-grid">
+            <h:outputLabel for="username" value="Benutzername:" styleClass="form-label"/>
+            <h:inputText id="username" value="#{loginBean.username}" styleClass="form-input"/>
+            
+            <h:outputLabel for="password" value="Passwort:" styleClass="form-label"/>
+            <h:inputSecret id="password" value="#{loginBean.password}" styleClass="form-input"/>
+        </h:panelGrid>
+        
+        <h:commandButton value="Anmelden" onclick="return validateForm();" action="#{loginBean.login}" styleClass="submit-button">
+            <!-- <f:ajax execute="@form" render="@form"/> daten absenden auf dem selben Seite bleiben-->
+            <f:ajax execute="@form" render="@none"/>
+        </h:commandButton>
+        
+        <h:messages globalOnly="true" styleClass="error-messages"/>
+    </h:form>
+    
+    
+    
+    <h:outputScript>
+        function validateForm() {
+            var username = document.getElementById('loginForm:username').value;
+            var password = document.getElementById('loginForm:password').value;
+            
+            if (username.trim() === '' || password.trim() === '') {
+                alert('Bitte füllen Sie alle Felder aus.');
+                return false;
+            }
+            return true;
+        }
+    </h:outputScript>
+    
+    <!-- <h:outputScript name="js/script.js" /> -->
+</h:body>
+   
+</html>
