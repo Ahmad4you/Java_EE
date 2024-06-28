@@ -1,0 +1,5 @@
+INSERT INTO public.Raum (standort) 
+VALUES ('Ulm');
+
+INSERT INTO public.Raum (standort) 
+VALUES ('Greven');

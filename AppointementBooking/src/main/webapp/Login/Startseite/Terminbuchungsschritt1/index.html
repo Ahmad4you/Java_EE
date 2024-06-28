@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Terminbuchungsschritt 1</title>
+    <link rel="stylesheet" href="Login/Startseite/Terminbuchungsschritt1/styles.css">
+    <link rel="stylesheet" type="text/css" href="Login/Startseite/Terminbuchungsschritt1/css/evo-calendar.css"/>
+    <link rel="stylesheet" type="text/css" href="Login/Startseite/Terminbuchungsschritt1/css/evo-calendar.midnight-blue.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+    <script src="Login/Startseite/Terminbuchungsschritt1/variablen.js"></script>
+    </head>
+
+    <body>
+      <div class="wwbild">
+        <a><img src="Login/Startseite/Terminbuchungsschritt1/logotrans.png" alt="LogoTrans" height="280px" width="280px"></a>
+     </div>
+
+    <a href="/AppointementBooking/car?controller=startseite"><button type="button"
+			class="backbutton">Zur�ck</button></a>
+
+     <a href=""><button type="button" class="forwardbutton">Nächster Schritt</button></button></a>
+
+      <div class="heading">
+      <h1>Terminbuchungsschritt 1</h1>
+      </div>
+
+     <div class="Text">
+		<p>Titel:</p>
+		<p>Grund:</p>
+		<br>
+		<p>Von:</p>
+		<p>Bis:</p>
+		<br>
+	</div>
+
+    <div style="width: 715px; ">
+	<form class="box" action="/AppointementBooking/car?controller=terminbuchung1"
+		method="POST" style="width: 723px; ">
+		<textarea class="ta1" name="title" id="title"></textarea>
+		<textarea class="ta2" name="grund" id="grund"></textarea>
+
+		<input class="Von" type="time" id="von" min="07:00"
+			max="19:00" required> <input class="Bis" type="time" id="bis"
+			min="07:00" max="19:00" required>
+		<button type="submit" name="nschrit" value="nschrit"
+			class="forwardbutton">N�chster Schritt</button>
+	</form>
+	</div>
+      
+      <div class="hero" style="width: 822px; height: 530px">
+        <div id="calendar" style="width: 822px; height: 530px"></div>
+        </div>
+        
+        <script src="js/evo-calendar.js"></script>
+
+        <script>
+        // initialize your calendar, once the page's DOM is ready
+        $('#calendar').evoCalendar({
+        theme: 'Midnight Blue',
+        calendarEvents: [
+      {
+        id: 'event1', // Event's ID (required)
+        name: "Event", // Event name (required)
+        date: "January/1/2020", // Event date (required)
+        type: "holiday", // Event type (required)
+        everyYear: true // Same event every year (optional)
+      },
+      {
+        name: "Vacation Leave",
+        badge: "02/13 - 02/15", // Event badge (optional)
+        date: ["February/13/2020", "February/15/2020"], // Date range
+        description: "Vacation leave for 3 days.", // Event description (optional)
+        type: "event",
+        color: "#63d867" // Event custom color (optional)
+      }
+    ]
+
+        })
+        </script>
+
+
+    </body>
+
+</html>

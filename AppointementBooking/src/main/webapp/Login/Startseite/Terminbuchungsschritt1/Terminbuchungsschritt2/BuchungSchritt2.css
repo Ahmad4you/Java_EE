@@ -1,0 +1,153 @@
+body
+{
+    margin:0;
+    padding:0;
+    font-family: sans-serif;
+    background: url(logotrans.jpg);
+    background-size: cover;
+}
+.backbutton
+{
+    position: absolute;
+    width: 80px;
+    height: 40px;
+    border-radius: 4px;
+    left: 2.5%;
+    top: 3%;
+    background-color: #92AFAD;
+    color: white;
+}
+.backbutton:hover
+{
+     background-color: #7c9794;
+}
+.wwbild
+{
+    position: absolute;
+    top: 14%;
+    left: 93%;
+    transform: translate(-50%, -50%);
+}
+.Heading
+{
+    position: absolute;
+}
+.heading h1
+{
+    color: #92AFAD;
+    position: absolute;
+    left: 50%;
+    top: 2%;
+    transform: translate(-50%, -50%);
+}
+.heading a
+{
+    position: absolute;
+    left: 50%;
+    top: 8%;
+    transform: translate(-50%, -50%);
+}
+
+.standort
+{
+    position: absolute;
+    left: 50%;
+    top: 15%;
+    transform: translate(-50%, -50%);
+}
+.ulm
+{
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%, -50%);
+}
+.greven
+{
+    position: absolute;
+    left: 50%;
+    top: 23%;
+    transform: translate(-50%, -50%);
+}
+
+
+.ausstattung
+{
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+}
+.checkBillard
+{
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+}
+.checkTischkicker
+{
+    position: absolute;
+    left: 50%;
+    top: 43%;
+    transform: translate(-50%, -50%);
+}
+.checkDartscheibe
+{
+    position: absolute;
+    left: 50%;
+    top: 46%;
+    transform: translate(-50%, -50%);
+}
+.catering1
+{
+    position: absolute;
+    left: 49%;
+    top: 49%;
+    transform: translate(-50%, -50%);
+}
+.catering
+{
+    position: absolute;
+    left: 50%;
+    top: 33%;
+    transform: translate(-50%, -50%);
+}
+.cateringEingabe
+{
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%);
+    resize: none;
+}
+.extraWuensche
+{
+    position: absolute;
+    left: 50%;
+    top: 58%;
+    transform: translate(-50%, -50%);
+}
+.extrawuenscheEingabe
+{
+    position: absolute;
+    left: 50%;
+    top: 65%;
+    transform: translate(-50%, -50%);
+    resize: none;
+}
+.vorbutton
+{
+    position: absolute;
+    width: 80px;
+    height: 40px;
+    border-radius: 4px;
+    left: 50%;
+    top: 75%;
+    background-color: #92AFAD;
+    transform: translate(-50%, -50%);
+}
+.vorbutton:hover
+{
+    background-color: #7c9794;
+}

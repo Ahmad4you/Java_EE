@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lan="de" and dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Terminbuchungsschritt 2</title>
+    <link rel="stylesheet" href="Login/Startseite/Terminbuchungsschritt1/Terminbuchungsschritt2/BuchungSchritt2.css">
+    <script src="Login/Startseite/Terminbuchungsschritt1/Terminbuchungsschritt2/BuchungSchritt2.js"></script>
+
+    <style>
+        a {
+           color: #92AFAD;
+           font-size: 1rem;
+           text-decoration: underline;
+           
+        }
+     </style>
+
+</head>
+<body>
+   <div class="wwbild">
+      <a><img src="Login/Startseite/Terminbuchungsschritt1/Terminbuchungsschritt2/logotrans.png" alt="LogoTrans" height="280px" width="280px"></a>
+   </div>
+   <button type="button" class="backbutton">Zurück</button onClick="javascript:history.back()"></button>
+   <div class="ausstattung">
+      <h1>Ausstattung</h1>
+   </div>
+   <div class="checkBillard">
+      <input type="checkbox" id="billardtischID" name="billardtisch" value="billardtischV">
+      <label for="subscribeNews">Billardtisch</label>
+    </div>
+    <br>
+    <div class="checkTischkicker">
+      <input type="checkbox" id="tischkickerID" name="tischkicker" value="tischkickerV">
+      <label for="subscribeNews">Tischkicker</label>
+    </div>
+    <br>
+    <div class="checkDartscheibe">
+      <input type="checkbox" id="dartscheibeID" name="dartscheibe" value="dartscheibeID">
+      <label for="subscribeNews">Dartscheibe</label>
+    </div>
+   <div class="heading">
+      <h1>Terminbuchung Schritt 2</h1>
+      <a>Bitte wähle an Ausstattung. Solltest du Extrawünsche haben, äußere diese.</a>
+  </div>
+  <div class="catering">
+   <h3>Catering</h3>
+</div>
+   <div class="cateringEingabe">
+      <textarea id="cateringEingabeID" name="cateringID" rows="4" cols="40" placeholder="Cateringwünsche" style="resize: none;"></textarea>
+   </div>
+   <div class="extraWuensche">
+      <h3>Extrawünsche</h3>
+   </div>
+   <div class="extrawuenscheEingabe">
+      <textarea id="extraWuenscheID" name="extraWuensche" rows="4" cols="40" placeholder="Extrawünsche" style="resize: none;"></textarea>
+   </div>
+   <a href="./Terminbuchungsschritt3/terminbuchung3.html"><button type="button" class="vorbutton">
+      Weiter
+   </button onClick="">
+</button></a>
+</body>
+</html>

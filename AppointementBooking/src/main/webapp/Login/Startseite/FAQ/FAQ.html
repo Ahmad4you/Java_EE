@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body>
+      <div class="wwbild">
+        <a><img src="logotrans.png" alt="LogoTrans" height="280px" width="280px"></a>
+     </div>
+
+     <button type="button" class="backbutton">Zurück</button onClick="javascript:history.back()"></button>
+
+      <div class="heading">
+      <h1>FAQ</h1>
+      </div>
+
+      <div class="popup" onclick="myFunction()">Wie erstelle ich einen Termin?
+        <span class="popuptext" id="myPopup">Terminbuchung auf der Startseite aufrufen</span>
+      </div>
+
+      <div class="popup1" onclick="myFunction1()">Wie storniere ich einen Termin?
+        <span class="popuptext1" id="myPopup1">Diese Funktion kommt noch.</span>
+      </div>
+
+      <div class="popup2" onclick="myFunction2()">....?
+        <span class="popuptext2" id="myPopup2">Weitere Fragen folgen.</span>
+      </div>
+
+
+
+
+    </body>
+
+    
+
+</html>
+
+
+<script>
+    // When the user clicks on <div>, open the popup
+    function myFunction() {
+      var popup = document.getElementById("myPopup");
+      popup.classList.toggle("show");
+    }
+
+    function myFunction1() {
+      var popup = document.getElementById("myPopup1");
+      popup.classList.toggle("show");
+    }
+
+    function myFunction2() {
+      var popup = document.getElementById("myPopup2");
+      popup.classList.toggle("show");
+    }
+    </script>

@@ -1,0 +1,114 @@
+-- Database: w_lax
+
+-- DROP DATABASE IF EXISTS w_lax;
+
+--CREATE DATABASE w_lax
+--   WITH 
+--    OWNER = postgres
+--   ENCODING = 'UTF8'
+--    LC_COLLATE = 'German_Germany.1252'
+--    LC_CTYPE = 'German_Germany.1252'
+--    TABLESPACE = pg_default
+--    CONNECTION LIMIT = -1;
+
+DROP TABLE IF EXISTS public.Raumbuchung;
+DROP TABLE IF EXISTS public.Teilnehmer;
+DROP TABLE IF EXISTS public.Mitarbeiter;
+DROP TABLE IF EXISTS public.Ausstattung;
+DROP TABLE IF EXISTS public.Raum;
+DROP TABLE IF EXISTS public.protokoll;
+DROP TABLE IF EXISTS public.Buchung;
+
+
+
+-- Table: public.Buchung
+CREATE TABLE public.Buchung
+(
+    id_buchung serial NOT NULL PRIMARY KEY,
+    titel character varying(50) NOT NULL,
+    beschreibung character varying(255),
+    beginn timestamp without time zone NOT NULL,
+    ende timestamp without time zone NOT NULL,
+    catering boolean DEFAULT FALSE,
+    extrawunsch character varying(255),
+    bestaetigung boolean DEFAULT FALSE
+);
+
+-- Table: public.Mitarbeiter
+CREATE TABLE public.Mitarbeiter
+(
+    id_mitarbeiter serial NOT NULL PRIMARY KEY,
+    nachname character varying(30) NOT NULL,
+    vorname character varying(30) NOT NULL,
+    email character varying(50) NOT NULL UNIQUE,
+	passwort character varying(25) NOT NULL UNIQUE
+);
+
+-- Table: public.Raum
+CREATE TABLE public.Raum
+(
+    id_raum serial NOT NULL PRIMARY KEY,
+    standort character varying(10) NOT NULL
+);
+
+-- Table: public.Ausstattung
+CREATE TABLE public.Ausstattung
+(
+    id_ausstattung serial NOT NULL PRIMARY KEY,
+    beschreibung character varying(255) NOT NULL,
+    gebucht boolean DEFAULT FALSE,
+    raum_id serial NOT NULL,
+    CONSTRAINT Ausstattung_raum_id_fkey FOREIGN KEY (raum_id)
+        REFERENCES public.Raum (id_raum) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
+
+
+-- Table: public.protokoll
+CREATE TABLE public.protokoll
+(
+    id_protokoll serial NOT NULL PRIMARY KEY,
+    typ character varying(50) NOT NULL,
+    inhalt character varying(1000),
+    zeitstempel timestamp without time zone NOT NULL,
+    buchung_id serial NOT NULL,
+    CONSTRAINT protokoll_buchung_id_fkey FOREIGN KEY (buchung_id)
+        REFERENCES public.Buchung (id_buchung) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
+
+-- Table: public.Raumbuchung
+CREATE TABLE public.Raumbuchung
+(
+    id_raumbuchung serial NOT NULL PRIMARY KEY,
+    Buchung_id serial NOT NULL,
+    raum_id serial NOT NULL,
+    CONSTRAINT Raumbuchung_Buchung_id_fkey FOREIGN KEY (Buchung_id)
+        REFERENCES public.Buchung (id_buchung) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT Raumbuchung_raum_id_fkey FOREIGN KEY (raum_id)
+        REFERENCES public.Raum (id_raum) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+);
+
+-- Table: public.Teilnehmer
+CREATE TABLE public.Teilnehmer
+(
+    id_teilnehmer serial NOT NULL PRIMARY KEY,
+    buchung_id serial NOT NULL,
+    mitarbeiter_id serial NOT NULL,
+    CONSTRAINT buchung_fkey FOREIGN KEY (buchung_id)
+        REFERENCES public.Buchung (id_buchung) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID,
+    CONSTRAINT mitarbeiter_fkey FOREIGN KEY (mitarbeiter_id)
+        REFERENCES public.Mitarbeiter (id_mitarbeiter) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
