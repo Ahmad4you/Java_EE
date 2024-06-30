@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+	version="3.0">
+
+	<persistence-unit name="AhmadPU" transaction-type="JTA"> <!-- your-persistence-unit -->
+		<jta-data-source>java:jboss/datasources/ahmadmysql</jta-data-source> <!-- my data-source "MySQLDS"ist in WildFly standalone.xml zu finden -->
+		<class>org.eclipse.db.entity.Branch</class>
+		<class>org.eclipse.db.entity.Brand</class>
+		<class>org.eclipse.db.entity.Category</class>
+		<class>org.eclipse.db.entity.City</class>
+		<class>org.eclipse.db.entity.Product</class>
+		<class>org.eclipse.db.entity.ProductsSize</class>
+		<class>org.eclipse.db.entity.Size</class>
+		<class>org.eclipse.db.entity.Zone</class>
+		<!-- <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider> -->
+	
+
+		<!-- JDBC connection properties -->
+		<properties>
+			<property name="jakarta.persistence.jdbc.driver"
+				value="com.mysql.cj.jdbc.Driver" />
+			<property name="jakarta.persistence.jdbc.url"
+				value="jdbc:mysql://localhost:3306/primefaces" />
+			<property name="jakarta.persistence.jdbc.user" value="root" />
+			<property name="jakarta.persistence.jdbc.password" value="" />
+
+			<!-- Hibernate properties -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<!-- <property name="hibernate.hbm2ddl.auto" value="update" /> -->  <!-- Schema-Validierung temporär deaktivieren to update vorhandene DB Tabellen!-->
+			<property name="hibernate.hbm2ddl.auto" value="validate"/>  
+			<!-- <property name="hibernate.hbm2ddl.auto" value="none"/> --> <!-- none validate-->
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.generate_statistics" value="true"/>
+			<property name="jakarta.persistence.schema-generation.database.action" value="validate"/>
+		</properties>
+	</persistence-unit>
+</persistence>

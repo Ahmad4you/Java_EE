@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+	<h:form>
+		<p:panel header="Category Details" style="width: 500px; margin: auto;">
+			<p:panelGrid columns="2" columnClasses="label, value"
+				styleClass="ui-noborder">
+				<p:outputLabel for="name" value="Category Name:" />
+				<p:inputText id="name" value="#{categoryBean.currentCategory.name}"
+					required="true" />
+
+				<p:outputLabel for="description" value="Category Description:" />
+				<p:inputTextarea id="description"
+					value="#{categoryBean.currentCategory.description}" rows="3"
+					autoResize="true" />
+
+				<f:facet name="footer">
+					<p:commandButton value="Save Category"
+						action="#{categoryBean.save()}" icon="pi pi-check" update="@form"
+						styleClass="ui-button-success" />
+				</f:facet>
+			</p:panelGrid>
+
+			<p:messages showDetail="true" closable="true">
+				<p:autoUpdate />
+			</p:messages>
+		</p:panel>
+	</h:form>
+</h:body>
+</html>

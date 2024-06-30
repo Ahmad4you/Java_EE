@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Kategorie-Verwaltung</title>
+	<style type="text/css">
+.page-container {
+	display: flex;
+	justify-content: center;
+	align-items: start;
+	min-height: 100vh;
+}
+
+.content-wrapper {
+	width: 80%;
+	max-width: 1000px;
+	
+}
+</style>
+
+</h:head>
+<h:body>
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{categoryBean.init}" />
+	</f:metadata>
+	<h1>Willkommen zur Kategorie-Verwaltung</h1>
+
+	<div class="page-container">
+		<div class="content-wrapper">
+			<h:form>
+				<p:dataTable value="#{categoryBean.users}" var="user"
+					style="width: 50%; margin: auto;" paginator="true" rows="10">
+					<p:column headerText="ID">
+						<h:outputText value="#{user.id}" />
+					</p:column>
+
+					<p:column headerText="Name">
+						<h:outputText value="#{user.name}" />
+					</p:column>
+
+					<p:column headerText="Category">
+						<h:outputText value="#{user.description}" />
+					</p:column>
+
+					<p:column headerText="ACTIOS">
+
+						<h:commandLink value="Edit" action="#{categoryBean.edit(user.id)}" /> - 
+			<h:commandLink value="Delete"
+							action="#{categoryBean.delete(user.id)}" />
+
+					</p:column>
+				</p:dataTable>
+
+				<!--  <h:commandLink value="link" action="#{categoryBean.creatForm}" /> -->
+				<p:commandButton value="Add Category" action="#{categoryBean.creatForm}" icon="pi pi-plus" />			
+
+				<!-- <p:panel header="PrimeFaces Test">
+			<p:inputText value="#{testBean.message}" />
+			<p:commandButton value="Submit" update="@form" />
+			<br />
+			<h:outputText value="#{testBean.message}" />
+		</p:panel> -->
+
+			</h:form>
+		</div>
+	</div>
+
+</h:body>
+</html>
