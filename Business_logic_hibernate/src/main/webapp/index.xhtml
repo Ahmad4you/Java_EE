@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head></h:head>
+<h:body>
+	<h1>Hibernate</h1>
+	<f:metadata>
+		<f:event type="preRenderView" listener="#{categoryBean.init}" />
+	</f:metadata>
+	
+	<h:form>
+		<h:dataTable value="#{categoryBean.users}" var="user" border="1">
+			<h:column>
+				<f:facet name="header">ID</f:facet>
+				<h:outputLabel>#{user.id}</h:outputLabel>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">NAME</f:facet>
+				<h:outputLabel>#{user.name}</h:outputLabel>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">DESCRIPTION</f:facet>
+				<h:outputLabel>#{user.description}</h:outputLabel>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">ACTIONS</f:facet>
+				<h:commandLink value="Edit" action="#{categoryBean.edit(user.id)}" /> - 
+			<h:commandLink value="Delete"
+					action="#{categoryBean.delete(user.id)}" />
+
+			</h:column>
+
+		</h:dataTable>
+
+		<h:commandLink value="link" action="#{categoryBean.creatForm}" />
+		<!-- 	<h:commandLink value="link" action="CategoryForm"/> -->
+		<!-- 	<h:commandLink value="link" action="CategoryForm.xhtml"/> -->
+
+	</h:form>
+</h:body>
+</html>
