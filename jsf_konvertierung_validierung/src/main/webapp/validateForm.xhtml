@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+   <!-- <h:outputStylesheet name="styles.css" /> -->
+   <link rel="stylesheet" href="styles.css" />
+</h:head>
+
+<h:body>
+    <div class="container">
+        <p:panel header="Erweitertes Benutzerformular" styleClass="form-panel">
+            <h:form id="form">
+                <p:messages id="messages" showDetail="true" closable="true" />
+                <h1>validate clientseitig (mit JS) als auch serverseitig (mit JSF) implementiert.</h1>
+                
+                <p:panelGrid columns="3" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+                    <p:outputLabel for="userNameEmail" value="Name/E-mail:" />
+                    <p:inputText id="userNameEmail" value="#{userBean.user}"
+                                 validator="userValidator" 
+                                 required="true" 
+                                 requiredMessage="Bitte geben Sie einen Benutzernamen oder eine E-Mail-Adresse ein."
+                                 validatorMessage="Ungültiger Benutzername oder E-Mail-Adresse">
+                        <f:validateLength minimum="4" />
+                        <f:validateRegex pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$|^[a-zA-Z0-9]{4,}$" />
+                    </p:inputText>
+                    <p:message for="userNameEmail" />
+
+                    <p:outputLabel for="userDropdown" value="Benutzer auswählen:" />
+                    <p:selectOneMenu id="userDropdown" value="#{userBean.selectedUser}">
+                        <f:selectItem itemLabel="Bitte auswählen" itemValue="" />
+                        <f:selectItems value="#{userBean.users}" var="user"
+                                       itemLabel="#{user.name}" itemValue="#{user}" />
+                        <p:ajax event="change" listener="#{userBean.onUserSelect}" 
+                                update="userNameEmail messages" />
+                    </p:selectOneMenu>
+                    <p:message for="userDropdown" />
+                </p:panelGrid>
+
+                <p:commandButton value="Validieren" action="#{userBean.userAction()}"
+                                 update="@form" styleClass="ui-button-raised ui-button-success"
+                                 onclick="return validateForm();" />
+            </h:form>
+        </p:panel>
+    </div>
+    <script src="script.js"></script>
+    <!-- <h:outputScript name="script.js" /> -->
+</h:body>
+</html>

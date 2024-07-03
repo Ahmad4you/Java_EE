@@ -1,0 +1,20 @@
+
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.form-panel {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ui-panelgrid-blank .ui-panelgrid-cell {
+    padding: 8px;
+}
+
+.ui-button-raised {
+    margin-top: 20px;
+}
