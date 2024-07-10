@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JAX RS CRUD</title>
+</head>
+<body>
+	<div>
+	<h2>Create Student</h2>
+		<form action="resources/student/createStudent" method="post">
+			<label id="label-1">Name des Studenten: </label>
+			<input id="name" name="name" />
+			<input id="age" name="age" />
+			<input type="submit" >
+		</form>
+	</div>
+	<div>
+	<h2>Read/Get Student</h2>
+		<form action="resources/student/getStudent" method="get">
+			<label id="label-1">Name des Studenten: </label>
+			<input id="name" name="name" />
+			<input type="submit" >
+		</form>
+	</div>
+	<div>
+	<h2>Update Student</h2>
+		<form action="resources/student/updateStudent" method="post">
+			<label id="label-1">Name des Studenten: </label>
+			<input id="name" name="name" />
+			<input id="age" name="age" />
+			<input type="submit" >
+		</form>
+	</div>
+	<div>
+	<h2>Delete Student</h2>
+		<form action="resources/student/deleteStudent" method="post">
+			<label id="label-1">Name des Studenten: </label>
+			<input id="name" name="name" />
+			<input type="submit" >
+		</form>
+	</div>
+	
+</body>
+</html>
