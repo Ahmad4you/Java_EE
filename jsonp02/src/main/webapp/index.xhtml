@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+      
+      <h:head>
+        <title>JSON-P</title>
+    </h:head>
+    <h:body>
+    <h:form>
+        <p:panel header="JSON Operations" style="margin-bottom:20px">
+            <p:commandButton value="Load JSONs" action="#{userView.loadUserJson()}" update="@form" icon="pi pi-refresh"/>
+            
+            <p:panelGrid columns="2" layout="grid" style="margin-top:20px">
+                <h:panelGroup>
+                    <p:outputLabel for="fromArray" value="From Array"/>
+                    <p:inputTextarea id="fromArray" value="#{userView.fromArray}" rows="5" cols="50"/>
+                </h:panelGroup>
+                
+                <h:panelGroup>
+                    <p:outputLabel for="fromStructure" value="From Structure"/>
+                    <p:inputTextarea id="fromStructure" value="#{userView.fromStructure}" rows="5" cols="50"/>
+                </h:panelGroup>
+
+                <h:panelGroup>
+                    <p:outputLabel for="fromUser" value="From User"/>
+                    <p:inputTextarea id="fromUser" value="#{userView.fromUser}" rows="5" cols="50"/>
+                </h:panelGroup>
+                
+                <h:panelGroup>
+                    <p:outputLabel for="fromJPointer" value="Query with JSON Pointer (from JsonStructure Above)"/>
+                    <p:inputTextarea id="fromJPointer" value="#{userView.fromJpointer}" rows="3" cols="50"/>
+                </h:panelGroup>
+            </p:panelGrid>
+        </p:panel>
+    </h:form>
+</h:body>
+</html>
+
+      
