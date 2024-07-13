@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.org/dtd/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-catalog="primefaces" match-name="branches"/>
+  <table-filter match-catalog="primefaces" match-name="brands"/>
+  <table-filter match-catalog="primefaces" match-name="categories"/>
+  <table-filter match-catalog="primefaces" match-name="cities"/>
+  <table-filter match-catalog="primefaces" match-name="products"/>
+  <table-filter match-catalog="primefaces" match-name="sizes"/>
+  <table-filter match-catalog="primefaces" match-name="zones"/>
+</hibernate-reverse-engineering>
