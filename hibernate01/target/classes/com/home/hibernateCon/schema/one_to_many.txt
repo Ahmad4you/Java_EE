@@ -1,0 +1,20 @@
+
+use primefaces;
+
+CREATE TABLE gamer (
+  gid BIGINT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45) NOT NULL,
+  age INT NOT NULL,
+  PRIMARY KEY (gid));
+
+CREATE TABLE emailaddress (
+  emailAddressId BIGINT NOT NULL AUTO_INCREMENT,
+  address VARCHAR(100) NOT NULL,
+  fK_gamer_id BIGINT NULL,
+  PRIMARY KEY (emailAddressId));
+
+
+alter table emailaddress
+add foreign key (fK_gamer_id) references gamer(gid);
+  
+  

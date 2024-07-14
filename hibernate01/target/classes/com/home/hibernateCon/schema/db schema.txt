@@ -1,0 +1,39 @@
+USE primefaces;
+
+-- Tabelle für User
+CREATE TABLE user (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(255),
+    last_name VARCHAR(255),
+    age INT,
+    passport_id BIGINT
+);
+
+-- Tabelle für Passport
+CREATE TABLE passport (
+    pid BIGINT PRIMARY KEY AUTO_INCREMENT,
+    passport_no VARCHAR(20) UNIQUE NOT NULL,
+    issue_date DATE,
+    expiry_date DATE,
+    country_of_issue VARCHAR(50)
+);
+
+-- Tabelle für Zugangsdaten
+CREATE TABLE zugangsdaten (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(255) NOT NULL,
+    phone_number VARCHAR(255),
+    current_password VARCHAR(255) NOT NULL,
+    old_password VARCHAR(255),
+    last_changed DATETIME,
+    user_id BIGINT
+);
+
+-- Fremdschlüssel-Beziehungen
+ALTER TABLE user
+ADD CONSTRAINT fk_user_passport
+FOREIGN KEY (passport_id) REFERENCES passport(pid);
+
+ALTER TABLE zugangsdaten
+ADD CONSTRAINT fk_zugangsdaten_user
+FOREIGN KEY (user_id) REFERENCES user(id);
