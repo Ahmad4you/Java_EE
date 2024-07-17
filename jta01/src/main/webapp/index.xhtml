@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:my="http://java.sun.com/jsf/composite/components">
+
+	<h:head>
+    <title>User Management</title>
+    <style type="text/css">
+        .input-field {
+            border: 1px solid #ccc;
+            padding: 5px;
+            margin: 5px;
+            width: 200px;
+        }
+        .button {
+            margin: 5px;
+            padding: 5px 10px;
+        }
+        .error-message {
+        color: red;
+        font-weight: bold;
+    }
+    </style>
+</h:head>
+<h:body>
+     <h:form>
+        <h2>Create/Update User</h2>
+        <h:messages globalOnly="true" styleClass="error-message"/>
+        <h:panelGrid columns="2">
+            <h:outputLabel for="name" value="Vorname:"/>
+            <h:inputText id="firstName" value="#{userManager.user.firstName}" required="true" requiredMessage="Vorname ist erforderlich"/>
+            <h:message for="firstName" styleClass="error-message"/>
+            <br/>
+            <h:outputLabel for="nachname" value="Nachname:"/>
+            <h:inputText id="lastName" value="#{userManager.user.lastName}" required="true" requiredMessage="Nachname ist erforderlich"/>
+            <h:message for="lastName" styleClass="error-message"/>
+            <br/>
+            <h:outputLabel for="age" value="Age:"/>
+            <h:inputText id="age" value="#{userManager.user.age}" required="true" requiredMessage="Alter ist erforderlich">
+            <f:validateLongRange minimum="0" maximum="150"/>
+            </h:inputText>
+            <h:message for="age" styleClass="error-message"/>
+            <br/>
+            <h:outputLabel for="email" value="E-Mail:"/>
+        <h:inputText id="email" value="#{userManager.user.zugangsdaten.email}" required="true" requiredMessage="E-Mail ist erforderlich">
+            <f:validator validatorId="emailValidator"/>
+        </h:inputText>
+        <h:message for="email" styleClass="error-message"/>
+		<br/>
+        <h:outputLabel for="currentPassword" value="Aktuelles Passwort:"/>
+        <h:inputSecret id="currentPassword" value="#{userManager.user.zugangsdaten.currentPassword}" required="true" requiredMessage="Passwort ist erforderlich">
+            <f:validateLength minimum="8" maximum="255"/>
+        </h:inputSecret>
+        <h:message for="currentPassword" styleClass="error-message"/>
+		<br/>
+        <h:outputLabel for="phoneNumber" value="Telefonnummer:"/>
+        <h:inputText id="phoneNumber" value="#{userManager.user.zugangsdaten.phoneNumber}"/>
+        <h:message for="phoneNumber" styleClass="error-message"/>
+    
+            
+          <!--   <h:outputLabel for="email" value="E-mail:"/>
+            <h:inputText id="email" value="#{zugangsdatenManager.zugangsdaten.email}" styleClass="input-field"/> -->
+        </h:panelGrid>
+        
+         <h:commandButton value="Create" action="#{userManager.createUser()}" styleClass="button"/> 
+       <!--  <h:commandButton styleClass="button">
+         <my:multiActionButton value="Create" 
+                              action1="#{userManager.createUser()}" 
+                              action2="#{zugangsdatenManager.create()}" /> Zugangsdaten
+        </h:commandButton> -->
+        
+        <h:commandButton value="Update" action="#{userManager.updateUser()}" styleClass="button"/>
+        <h:commandButton value="Reset" action="#{userManager.resetForm()}" styleClass="button"/>
+    </h:form>
+    
+    <h2>User List</h2>
+    <h:form>
+        <h:dataTable value="#{userManager.users}" var="user">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                #{user.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Vorname</f:facet>
+                #{user.firstName}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Nachname</f:facet>
+                #{user.lastName}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Age</f:facet>
+                #{user.age}
+            </h:column>
+            <h:column>
+                <f:facet name="header">E-mail</f:facet>
+                #{user.zugangsdaten.email}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Actions</f:facet>
+                <h:commandButton value="Delete" action="#{userManager.deleteUser(user.id)}"/>
+                <h:commandButton value="Edit" action="#{userManager.setUser(user)}"/>
+            </h:column>
+        </h:dataTable>
+    </h:form>
+</h:body>
+</html>
