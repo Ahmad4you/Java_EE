@@ -19,7 +19,7 @@ public class TeacherAddresse {
 	@GeneratedValue(generator = "gen")
 	@GenericGenerator(name = "gen", strategy = "foreign", parameters = @Parameter(name="property", value = "teacher"))
 	@Column(name = "TID")
-	private int id;
+	private Long id;
 	
 	@Column(name = "city")
 	private String stadt;
@@ -41,11 +41,11 @@ public class TeacherAddresse {
 		this.strasse = strasse;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

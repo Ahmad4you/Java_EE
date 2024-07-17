@@ -4,33 +4,41 @@
 package com.home.hibernateCon.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "zugangsdaten")
-public class Zugangsdaten {
+public class Zugangsdaten implements Serializable{
+
+    private static final long serialVersionUID = 6358626293805510019L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
     private Long id;
     
-    @NotNull
-    @Column(name = "email")
+    @NotBlank
+    @NotNull(message = "Die E-Mail-Adresse darf nicht leer sein")
+    @Email(message = "Bitte geben Sie eine gültige E-Mail-Adresse ein")
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @NotNull
-    @Size(min = 8, max = 255)
+    @NotBlank
+    @NotNull(message = "Das aktuelle Passwort darf nicht leer sein")
+    @Size(min = 8, max = 255, message = "Das Passwort muss zwischen 8 und 255 Zeichen lang sein")
     @Column(name = "current_password", nullable = false)
     private String currentPassword;
 
-    @Size(min = 8, max = 255)
+    @Size(min = 8, max = 255, message = "Das alte Passwort muss zwischen 8 und 255 Zeichen lang sein")
     @Column(name = "old_password")
     private String oldPassword;
 
@@ -38,7 +46,7 @@ public class Zugangsdaten {
     private LocalDateTime lastChanged;
 
     @OneToOne
-    @PrimaryKeyJoinColumn
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Zugangsdaten() {
@@ -63,7 +71,7 @@ public class Zugangsdaten {
         return email;
     }
 
-    public void setEmails(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 

@@ -1,25 +1,28 @@
 package com.home.hibernateCon.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+
+
 @Entity
 @Table(name = "passport")
-public class Passport {
+public class Passport implements Serializable{
 
-    @Id
+    
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pid", nullable = false, updatable = false)
     private Long id;
     
+	@NotBlank
     @NotNull
     @Size(min = 5, max = 20)
     @Column(name = "passport_no", unique = true)

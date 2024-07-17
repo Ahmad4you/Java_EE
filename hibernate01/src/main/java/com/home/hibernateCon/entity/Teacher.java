@@ -16,7 +16,7 @@ public class Teacher {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "TID")
-	private int id;
+	private Long id;
 	
 	@Column(name = "name")
 	private String name;
@@ -37,11 +37,11 @@ public class Teacher {
 		this.fachbereich = fachbereich;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

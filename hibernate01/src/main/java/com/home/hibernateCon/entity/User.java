@@ -1,31 +1,39 @@
 package com.home.hibernateCon.entity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import java.io.Serializable;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
+
 
 @Entity
 @Table(name = "user", uniqueConstraints = {
     @UniqueConstraint(name = "unique_full_name", columnNames = {"first_name", "last_name"})
 })
-public class User {
+public class User implements Serializable{
+	
+
+	private static final long serialVersionUID = 1L;
+
+	/*
+	 * @GeneratedValue(strategy = GenerationType.AUTO)
+     * Automatische Auswahl: Der JPA-Provider (z.B. Hibernate) wählt automatisch die am besten geeignete Strategie 
+     * zur Generierung von Primärschlüsseln aus.
+     * 
+     */
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
     private Long id;
-
-    @Column(name = "first_name")
+    
+    @NotBlank
+    @Column(name = "first_name", nullable = false)
     private String firstName;
-
-    @Column(name = "last_name")
+    
+    @NotBlank
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
     @Column(name = "age")
@@ -35,8 +43,11 @@ public class User {
     @JoinColumn(name = "passport_id")  // Beziehung nur in eine Richtung hier User -> Passport, umgekehrt ist unmöglich
     private Passport passport;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Zugangsdaten zugangsdaten;
+    
+//    @Transient
+//    private transient SomeNonSerializableType someField;
 
     public User() {
     }
