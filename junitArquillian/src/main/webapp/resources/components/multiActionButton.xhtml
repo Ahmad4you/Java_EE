@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<cc:interface>
+    <cc:attribute name="value" />
+    <cc:attribute name="action1" method-signature="java.lang.String action()" />
+    <cc:attribute name="action2" method-signature="void action()" />
+</cc:interface>
+
+<cc:implementation>
+    <h:commandButton value="#{cc.attrs.value}" 
+                     actionListener="#{cc.attrs.action2}"
+                     action="#{cc.attrs.action1}"
+                     styleClass="button"/>
+</cc:implementation>
+
+</html>
