@@ -1,0 +1,12 @@
+<job id="userAccess" xmlns="https://jakarta.ee/xml/ns/jakartaee" version="2.0">
+    <step id="loadData">
+        <chunk>
+            <reader ref="userReader" />
+            <processor ref="userProcessor" />
+            <writer ref="userWriter" />
+        </chunk>
+        <listeners>
+            <listener ref="userJobListener"/>
+        </listeners>
+    </step>
+</job>
