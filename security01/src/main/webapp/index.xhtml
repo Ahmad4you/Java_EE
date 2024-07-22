@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>User Management</title>
+    <style type="text/css">
+        .small-table {
+            width: 70%;
+            margin: auto;
+        }
+    </style>
+</h:head>
+
+<h:body>
+    <h:form id="form">
+    <p:panel header="Users" style="width: 40%; margin: auto;">
+        <p:growl id="messages" showDetail="true" />
+        
+        <p:dataTable id="usersTable" var="user" value="#{userManagementBean.users}" selection="#{userManagementBean.selectedUser}" selectionMode="single" 
+        rowKey="#{user.id}" styleClass="small-table" responsive="true" 
+        resizableColumns="true" draggableColumns="true">
+        <p:ajax event="rowSelect" listener="#{userManagementBean.onUserSelect}" update=":form:editPanel" />
+        
+            <p:column headerText="ID">
+                <h:outputText value="#{user.id}" />
+            </p:column>
+            <p:column headerText="Vorname">
+                <h:outputText value="#{user.firstName}" />
+            </p:column>
+            <p:column headerText="Nachname">
+                <h:outputText value="#{user.lastName}" />
+            </p:column>
+        </p:dataTable>
+        </p:panel>
+        
+        <p:panel header="Add New User" style="margin-top:20px">
+            <h:panelGrid columns="2" cellpadding="5">
+                <p:outputLabel for="vorname" value="Vorname:" />
+                <p:inputText id="vorname" value="#{userManagementBean.newUser.firstName}" required="true" />
+                
+                <p:outputLabel for="nachname" value="Nachname:" />
+                <p:inputText id="nachname" value="#{userManagementBean.newUser.lastName}" required="true" />
+                
+             
+            </h:panelGrid>
+            
+            <p:commandButton value="Add User" action="#{userManagementBean.addUser}" update=":form:usersTable :form:messages" />
+        </p:panel>
+        
+        <p:outputPanel id="editPanel">
+       <p:panel header="Edit User" style="margin-top:20px" rendered="#{userManagementBean.selectedUser != null}">
+    <h:panelGrid columns="2" cellpadding="5">
+        <p:outputLabel for="editVorname" value="Vorname:" />
+        <p:inputText id="editVorname" value="#{userManagementBean.selectedUser.firstName}" />
+        
+        <p:outputLabel for="editNachname" value="Nachname:" />
+        <p:inputText id="editNachname" value="#{userManagementBean.selectedUser.lastName}" />
+    </h:panelGrid>
+    
+    <p:commandButton value="Update User" action="#{userManagementBean.updateUser}" update=":form:usersTable :form:messages :form:editPanel" />
+    <p:commandButton value="Delete User" action="#{userManagementBean.deleteUser}" update=":form:usersTable :form:messages :form:editPanel" />
+   </p:panel>
+   </p:outputPanel>
+    </h:form>
+</h:body>
+</html>
