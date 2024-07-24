@@ -22,6 +22,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 
 /**
+ * localhost:8080/ahmad_authorization01/UserAuthorizationServlet?name=ahmad
  * 
  * @author Ahmad Alrefai
  */
@@ -65,6 +66,9 @@ public class AuthenticationMechanism implements HttpAuthenticationMechanism {
                     return httpMessageContext.notifyContainerAboutLogin(callerOnlyCredential.getCaller(), new HashSet<>(asList(Roles.ROLE2)));
                 case "user3":
                     return httpMessageContext.notifyContainerAboutLogin(callerOnlyCredential.getCaller(), new HashSet<>(asList(Roles.ROLE3)));
+                case "ahmad":
+                    return httpMessageContext.notifyContainerAboutLogin(callerOnlyCredential.getCaller(), new HashSet<>(asList(Roles.ROLE4)));
+                    
                 default:
                     throw new AuthenticationException();
             }

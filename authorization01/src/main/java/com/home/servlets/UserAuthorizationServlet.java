@@ -20,7 +20,7 @@ import static jakarta.security.enterprise.authentication.mechanism.http.Authenti
 /**
  * Servlet implementation class UserAuthorizationServlet
  */
-@DeclareRoles({Roles.ROLE1, Roles.ROLE2, Roles.ROLE3})
+@DeclareRoles({Roles.ROLE1, Roles.ROLE2, Roles.ROLE3, Roles.ROLE4})
 @WebServlet(name = "/UserAuthorizationServlet", urlPatterns = {"/UserAuthorizationServlet"})
 public class UserAuthorizationServlet extends HttpServlet {
 
@@ -37,6 +37,9 @@ public class UserAuthorizationServlet extends HttpServlet {
     
     @Inject
     private Role3Executor role3Executor;
+    
+    @Inject
+    private Role3Executor role4Executor;
     
     @Inject
     private UserActivity userActivity;
@@ -64,6 +67,7 @@ public class UserAuthorizationServlet extends HttpServlet {
             response.getWriter().write("Role \"role1\" access: " + request.isUserInRole(Roles.ROLE1) + "\n");
             response.getWriter().write("Role \"role2\" access: " + request.isUserInRole(Roles.ROLE2) + "\n");
             response.getWriter().write("Role \"role3\" access: " + request.isUserInRole(Roles.ROLE3) + "\n");
+            response.getWriter().write("Role \"role4\" access: " + request.isUserInRole(Roles.ROLE4) + "\n");
 
             RoleExecutable executable = null;
 
@@ -73,6 +77,8 @@ public class UserAuthorizationServlet extends HttpServlet {
                 executable = role2Executor;
             } else if (request.isUserInRole(Roles.ROLE3)) {
                 executable = role3Executor;
+            } else if (request.isUserInRole(Roles.ROLE4)) {
+                executable = role4Executor;
             }
 
             if (executable != null) {
@@ -93,9 +99,16 @@ public class UserAuthorizationServlet extends HttpServlet {
 
                     try {
                         userActivity.role3Allowed();
-                        response.getWriter().write("role2Allowed executed: true\n");
+                        response.getWriter().write("role3Allowed executed: true\n");
                     } catch (Exception e) {
-                        response.getWriter().write("role2Allowed executed: false\n");
+                        response.getWriter().write("role3Allowed executed: false\n");
+                    }
+                    
+                    try {
+                        userActivity.role4Allowed();
+                        response.getWriter().write("role4Allowed executed: true\n");
+                    } catch (Exception e) {
+                        response.getWriter().write("role4Allowed executed: false\n");
                     }
 
                 });

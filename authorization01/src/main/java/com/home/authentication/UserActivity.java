@@ -29,6 +29,11 @@ public class UserActivity {
     public void role3Allowed(){
         System.out.println("role3Allowed executed");
     }
+    
+    @RolesAllowed({Roles.ROLE4})
+    public void role4Allowed(){
+        System.out.println("role4Allowed executed ahmad Role");
+    }
 
     @PermitAll
     public void anonymousAllowed(){
