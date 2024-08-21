@@ -3,11 +3,11 @@ Willkommen im Sammlung von Jakarta EE Projekten-Repository! Dieses Repository en
 
 ## Projektliste
 1: JSP und Servlets
-2: JPA (Java Persistence API) Beispiel
+2: JPA (Java Persistence API)
 3: EJB (Enterprise JavaBeans) Grundlagen
-4: CDI (Contexts and Dependency Injection) Beispiel
+4: CDI (Contexts and Dependency Injection)
 5: JAX-RS RESTful Web Service
-6: Bean Validation Beispiel
+6: Bean Validation
 7: Jakarta JSON Processing
 8: WebSocket API
 9: Jakarta EE MicroProfile
